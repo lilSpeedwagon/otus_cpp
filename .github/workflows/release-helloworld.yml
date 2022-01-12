@@ -23,7 +23,7 @@ jobs:
       run: cmake --build .
     - name: run tests
       working-directory: ./task_1_cpp_builder
-      run: cmake --build --target test
+      run: cmake --build . --target test
     - name: build package
       working-directory: ./task_1_cpp_builder
       run: cmake --build . --target package
