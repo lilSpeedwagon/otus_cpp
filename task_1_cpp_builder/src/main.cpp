@@ -3,7 +3,8 @@
 #include <version.hpp>
 
 int main() {
-    std::cout << "Current build version: " << version::get_build_version() << '\n';
-    std::cout << "Hello, world!\n";
+    const auto version_str = version::get_project_version().ToString();
+    std::cout << "Current build version: " << version_str << "\n"
+              << "Hello, world!\n";
     return 0;
 }

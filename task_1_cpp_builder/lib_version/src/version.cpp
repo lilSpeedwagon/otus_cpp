@@ -5,12 +5,20 @@
 
 namespace version {
 
-std::string get_build_version() {
+std::string Version::ToString() const {
     std::stringstream ss;
-    ss << PROJECT_VERSION_MAJOR;
-    ss << ".";
-    ss << PROJECT_VERSION_PATCH;
+    ss << PROJECT_VERSION_MAJOR << "."
+       << PROJECT_VERSION_MINOR << "."
+       << PROJECT_VERSION_PATCH;
     return ss.str();
+}
+
+Version get_project_version() {
+    return Version{
+      PROJECT_VERSION_MAJOR,  // major
+      PROJECT_VERSION_MINOR,  // minor
+      PROJECT_VERSION_PATCH,  // build
+    };
 }
 
 }

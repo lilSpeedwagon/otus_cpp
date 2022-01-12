@@ -5,8 +5,19 @@
 namespace version {
 
 /**
- * Returns a string represents the version of the current build.
+ * @struct Struct representing a version number of the project.
  */
-std::string get_build_version();
+struct Version {
+    int major;
+    int minor;
+    int build;
+
+    std::string ToString() const;
+};
+
+/**
+ * @brief Returns a version of the current build.
+ */
+Version get_project_version();
 
 }

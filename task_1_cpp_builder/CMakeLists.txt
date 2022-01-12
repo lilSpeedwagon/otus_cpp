@@ -5,6 +5,8 @@ set(PROJECT_VERSION 0.0.${PATCH_VERSION})
 
 project(helloworld VERSION ${PROJECT_VERSION})
 
+option(WITH_BOOST_TEST "Whether to build Boost test" ON)
+
 add_subdirectory(lib_version)
 
 add_executable(helloworld_cli src/main.cpp)
@@ -39,3 +41,7 @@ set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 include(CPack)
+
+if(WITH_BOOST_TEST)
+    enable_testing()
+endif()
