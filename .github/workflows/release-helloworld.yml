@@ -13,17 +13,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: change dir to task_1
-      run: cd task_1_cpp_builder
     - name: install boost
       run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
     - name: cmake configure
+      working-directory: ./task_1_cpp_builder
       run: cmake . -DPATCH_VERSION=${{ github.run_number }} -DWITH_BOOST_TEST=ON
     - name: make build
+      working-directory: ./task_1_cpp_builder
       run: cmake --build .
     - name: run tests
+      working-directory: ./task_1_cpp_builder
       run: cmake --build --target test
     - name: build package
+      working-directory: ./task_1_cpp_builder
       run: cmake --build . --target package
     - name: release
       id: create_release
@@ -42,6 +44,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./helloworld-0.0.${{ github.run_number }}-Linux.deb
+        asset_path: ./task_1_cpp_builder/build/helloworld-0.0.${{ github.run_number }}-Linux.deb
         asset_name: helloworld-0.0.${{ github.run_number }}-Linux.deb
         asset_content-type: application/vnd.debian.binary-package
